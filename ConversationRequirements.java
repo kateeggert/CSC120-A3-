@@ -1,7 +1,7 @@
 interface ConversationRequirements {
 
-    void chat();
-    void printTranscript();
+    String chat();
+    void printTranscript(String transcript);
     String respond(String inputString); 
     
 }
