@@ -3,13 +3,10 @@ import java.util.ArrayList;
 
 class Conversation implements ConversationRequirements {
   
-  // Attributes 
-  String username;
   /**
    * Constructor 
    */
-  Conversation(String name) {
-    this.username = name;
+  Conversation() {
   }
 
   /**
@@ -92,7 +89,7 @@ class Conversation implements ConversationRequirements {
       }
     // If no replacements were made, then it returns a random canned response from the list
     } if (returnString.trim().equals(inputString)) {
-      String[] responses = {"Mhm.", "Interesting.", "Tell me more.", "Go on."};
+      String[] responses = {"Mhm.", "Interesting.", "Wow!"};
       int randomIndex = (int) (Math.random() * responses.length);
       returnString = responses[randomIndex];
     } 
@@ -102,7 +99,7 @@ class Conversation implements ConversationRequirements {
 
   public static void main(String[] arguments) {
 
-    Conversation myConversation = new Conversation("kate");
+    Conversation myConversation = new Conversation();
     String transcript = myConversation.chat();
     myConversation.printTranscript(transcript);
   }
