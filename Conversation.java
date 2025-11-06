@@ -3,10 +3,14 @@ import java.util.ArrayList;
 
 class Conversation implements ConversationRequirements {
   
+  // Creates a array to store every line for the transcript
+  ArrayList<String> transcript;
+
   /**
    * Constructor 
    */
   Conversation() {
+    transcript = new ArrayList<String>();
   }
 
   /**
@@ -14,8 +18,6 @@ class Conversation implements ConversationRequirements {
    * @return converation transcript as a string
    */
   public String chat() {
-    // Creates a array to store every line for the transcript
-    ArrayList<String> transcript = new ArrayList<String>();
     // Creates a scanner 
     Scanner input = new Scanner(System.in);
     // Reads number of rounds, default is 0
@@ -26,22 +28,22 @@ class Conversation implements ConversationRequirements {
     input.nextLine(); 
     // Starts the conversation with the same opening each time & adds it to the transcript
     String intro = "Hi there! What's on your mind?";
-    transcript.add(intro);
+    this.transcript.add(intro);
     System.out.println(intro);
     // For each number of rounds, the loop takes the user input, generates a response, and adds to the transcript
     for (int i = 0; i < rounds; i++) {
       String inputString = input.nextLine();
-      transcript.add(inputString);
+      this.transcript.add(inputString);
       String response = respond(inputString);
-      transcript.add(response);
+      this.transcript.add(response);
       System.out.println(response);
     }
     // Closes the scanner, ends the conversation, and returns the transcript as a string
     input.close();
     String outro = "See ya!";
-    transcript.add(outro);
+    this.transcript.add(outro);
     System.out.println(outro);
-    return transcript.toString();
+    return this.transcript.toString();
   }
 
   /**
@@ -50,9 +52,9 @@ class Conversation implements ConversationRequirements {
    */
   public void printTranscript(String transcript) {
     // Re-formats the transcript so it doesn't look like an array
-    String newTranscript = transcript.replaceAll(",", "\n");
-    String newTranscript1 = newTranscript.replace("[", " ");
-    String newTranscript2 = newTranscript1.replace("]", " ");
+    String newTranscript = transcript.replaceAll(", ", "\n");
+    String newTranscript1 = newTranscript.replace("[", "");
+    String newTranscript2 = newTranscript1.replace("]", "");
     // Prints the transcript
     System.out.println("TRANSCRIPT:");
     System.out.println(newTranscript2);
@@ -71,17 +73,17 @@ class Conversation implements ConversationRequirements {
     String[] myArray = inputString.split(regex);
     // For every word in the input string array, checks if a mirror word is present & replaces it. 
     for (String s : myArray) {
-      if (s.equals("I")) {
+      if (s.equals("I ")) {
         returnString += "you ";
-      } else if (s.equals("me")) {
+      } else if (s.equals("me ")) {
         returnString += "you ";
-      } else if (s.equals("am")) {
+      } else if (s.equals("am ")) {
         returnString += "are ";
-      } else if (s.equals("you")) {
+      } else if (s.equals("you ")) {
         returnString += "I ";
-      } else if (s.equals("my")) {
+      } else if (s.equals("my ")) {
         returnString += "your ";
-      } else if (s.equals("your")) {
+      } else if (s.equals("your ")) {
         returnString += "my ";
         // If it isn't a mirror word, just adds the original word to the return string
       } else {
@@ -95,7 +97,7 @@ class Conversation implements ConversationRequirements {
     } 
     return returnString;
   } 
-  
+
 
   public static void main(String[] arguments) {
 
